@@ -1,0 +1,15 @@
+Общие сведения.
+1. Qt: https://www.qt.io/ru/
+2. Code style: http://wiki.qt.io/Qt_Coding_Style/ru
+3. Руководство по QDoc: http://doc.qt.io/qt-5/qdoc-index.html
+4. Еще немного правил оформления: https://habrahabr.ru/post/145850/
+5. Знакомство с github: https://guides.github.com/activities/hello-world/
+
+Задействованные технологии и языки.
+1. С++: www.cplusplus.com/
+2. MySQL: http://dev.mysql.com/
+3. Java Dev kit(JDK): http://www.oracle.com/technetwork/java/index-jsp-138363.html 
+4. Android studio(+SDK): https://developer.android.com/studio/index.html
+5. Android NDK: https://developer.android.com/ndk/downloads/index.html
+6. ios Xcode: https://developer.apple.com/xcode/
+7. Django framework: https://www.djangoproject.com/
