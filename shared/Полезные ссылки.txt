@@ -13,3 +13,9 @@
 5. Android NDK: https://developer.android.com/ndk/downloads/index.html
 6. ios Xcode: https://developer.apple.com/xcode/
 7. Django framework: https://www.djangoproject.com/
+
+Информация по тематике приложения.
+1. Федеральный классификационный каталог отходов: http://rpn.gov.ru/node/852
+2. Описание структуры ФККО: http://vtorothodi.ru/vse-ob-otxodax/fkko
+3. Описние классов отходов: http://vtorothodi.ru/klassy-otxodov
+4. Пункты приема мусора лекго находятся в яндексе, так что оставляю этот пункт без ссылки.
