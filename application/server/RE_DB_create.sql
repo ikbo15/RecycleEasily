@@ -1,6 +1,6 @@
 # Создание базы данных RecycleEasily в MySQL.
 
-CREATE DATABASE recycle_easily;
+CREATE DATABASE recycle_easily CHARACTER SET utf8;
 
 USE recycle_easily;
 
