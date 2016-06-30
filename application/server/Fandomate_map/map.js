@@ -3,12 +3,12 @@ ymaps.ready(function () {
         center: [55.751574, 37.573856],
         zoom: 11,
         behaviors: ['default', 'scrollZoom'],
-        controls: ['geolocationControl']
+        controls: ['geolocationControl']  //Кнопка геолокации
     }, {
         searchControlProvider: 'yandex#search'
 }),
 
-clusterer = new ymaps.Clusterer({
+clusterer = new ymaps.Clusterer({    //Создание кластера
     preset: 'islands#invertedVioletClusterIcons',
     groupByCoordinates: false,
     clusterDisableClickZoom: true,
@@ -18,23 +18,21 @@ clusterer = new ymaps.Clusterer({
 
 getPointData = function (index) { //изменить параметры
     return {
-        balloonContentHeader: points[i].name,
-        balloonContentBody: "<b>Адрес: </b>" + points[i].address,
-        balloonContentFooter: points[i].link,
-        hintContent: points[i].name,
-        //clusterCaption: index
+        balloonContentHeader: points[i].name,   //Заголовок балуна, передается название объекта
+        balloonContentBody: "<b>Адрес: </b>" + points[i].address,  //Вывод адреса в основной блок балуна
+        hintContent: points[i].name,  //Подсказка при наведении на метку, вывод названия объекта
     };
 },
 
 getPointOptions = function () {
     return {
-        preset: 'islands#violetIcon'
+        preset: 'islands#violetIcon'  //Выбор отображения метки
     };
 },
 
 geoObjects = [];
 
-for(var i = 0, len = points.length; i < len; i++) { 
+for(var i = 0, len = points.length; i < len; i++) { //Цикл для вывода каждой метки
     var myPlacemark = new ymaps.Placemark(points[i].coordinates, getPointData(i), getPointOptions());
     geoObjects[i] = myPlacemark;
 }
