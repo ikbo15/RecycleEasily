@@ -32,7 +32,7 @@ getPointOptions = function () {
 
 geoObjects = [];
 
-for(var i = 0, len = points.length; i < len; i++) { //Цикл для вывода каждой метки
+for(var i = 0, len = points.length; i < len; i++) { //Цикл для вывода кажоый метки
     var myPlacemark = new ymaps.Placemark(points[i].coordinates, getPointData(i), getPointOptions());
     geoObjects[i] = myPlacemark;
 }
