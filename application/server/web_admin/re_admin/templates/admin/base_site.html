@@ -1,9 +1,11 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 {% extends "admin/base.html" %}
+{% load staticfiles %}
 
 {% block title %}{{ title }} | {{ site_title|default:_('Recycle Easily admin') }}{% endblock %}
 
 {% block branding %}
-<h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Recycle Easily administration') }}</a></h1>
+<h1 id="site-name"><a href="{% url 'admin:index' %}">Recycle Easily</a></h1>
 {% endblock %}
 
 {% block nav-global %}{% endblock %}

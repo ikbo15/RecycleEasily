@@ -5,143 +5,156 @@
 #   * Make sure each ForeignKey has `on_delete` set to the desired behavior.
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
-from __future__ import unicode_literals
 
+# -*- coding: utf-8 -*-
+
+from __future__ import unicode_literals
 from django.db import models
 
 
-class Cities(models.Model):
-    id = models.IntegerField(db_column='ID', primary_key=True)  # Field name made lowercase.
+class City(models.Model):
     name = models.CharField(unique=True, max_length=30)
+	 
+    def __unicode__(self):
+	return self.name  
 
     class Meta:
-        managed = False
-        db_table = 'cities'
+        managed = True
+        verbose_name_plural = 'Cities'
+	db_table = 'cities'
 
 
-class FacebookUsers(models.Model):
-    id = models.IntegerField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    address = models.CharField(unique=True, max_length=50)
+class Street(models.Model):
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
 
-    class Meta:
-        managed = False
-        db_table = 'facebook_users'
-
-
-class StationExamples(models.Model):
-    trash = models.ForeignKey('Stations', models.DO_NOTHING)
-    station = models.ForeignKey('TrashExamples', models.DO_NOTHING)
+    def __unicode__(self):
+        return self.name
 
     class Meta:
-        managed = False
-        db_table = 'station-examples'
+        managed = True
+        db_table = 'streets'
+	
+
+class TrashStation(models.Model):
+    trash_type = models.ForeignKey('TrashType', on_delete=models.CASCADE)
+    station = models.ForeignKey('Station', on_delete=models.CASCADE)
+
+    def __unicode__(self):
+        return 'Trash-Station connection'
+   
+    class Meta:
+        managed = True
+        verbose_name_plural = 'Trash-Stations'
+	db_table = 'trash-stations'
 
 
-class StationTypes(models.Model):
-    id = models.IntegerField(db_column='ID', primary_key=True)  # Field name made lowercase.
+class Station(models.Model):
     name = models.CharField(max_length=30)
-    description = models.TextField()
-
-    class Meta:
-        managed = False
-        db_table = 'station_types'
-
-
-class Stations(models.Model):
-    id = models.IntegerField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    name = models.CharField(max_length=30)
-    street = models.ForeignKey('Streets', models.DO_NOTHING)
+    street = models.ForeignKey(Street, on_delete=models.CASCADE)
     house = models.SmallIntegerField()
-    building = models.SmallIntegerField(blank=True, null=True)
-    type = models.ForeignKey(StationTypes, models.DO_NOTHING)
-    raiting = models.SmallIntegerField(blank=True, null=True)
-    position_x = models.FloatField(blank=True, null=True)
-    position_y = models.FloatField(blank=True, null=True)
+    building = models.SmallIntegerField(blank=True,null=True)
+    raiting = models.SmallIntegerField(blank=True,null=True)
+    position_x = models.FloatField(null=True)
+    position_y = models.FloatField(null=True)
     add_date = models.DateField()
     update_date = models.DateField()
     description = models.TextField(blank=True, null=True)
 
+    def __unicode__(self):
+        return self.name
+
     class Meta:
-        managed = False
+        managed = True
         db_table = 'stations'
 
 
-class Streets(models.Model):
-    id = models.IntegerField(db_column='ID', primary_key=True)  # Field name made lowercase.
-    city = models.ForeignKey(Cities, models.DO_NOTHING)
-    name = models.CharField(max_length=100)
-
-    class Meta:
-        managed = False
-        db_table = 'streets'
-
-
-class TrashClasses(models.Model):
-    id = models.IntegerField(db_column='ID', primary_key=True)  # Field name made lowercase.
+class TrashClass(models.Model):
     name = models.CharField(max_length=30)
-    description = models.TextField()
+    description = models.TextField(blank=True, null=True)
+
+    def __unicode__(self):
+        return self.name
 
     class Meta:
-        managed = False
+        managed = True
+	verbose_name_plural = 'Trash classes'
         db_table = 'trash_classes'
 
 
-class TrashExamples(models.Model):
-    id = models.IntegerField(db_column='ID', primary_key=True)  # Field name made lowercase.
+class Trash(models.Model):
     name = models.CharField(max_length=30)
-    type = models.ForeignKey('TrashTypes', models.DO_NOTHING)
-    class_field = models.ForeignKey(TrashClasses, models.DO_NOTHING, db_column='class_id')  # Field renamed because it was a Python reserved word.
+    type = models.ForeignKey('TrashType', on_delete=models.CASCADE)
+    class_id = models.ForeignKey('TrashClass', on_delete=models.CASCADE, verbose_name='class') 
+
+    def __unicode__(self):
+        return self.name
 
     class Meta:
-        managed = False
-        db_table = 'trash_examples'
+        managed = True
+	verbose_name_plural = 'Trash'
+        db_table = 'trash'
 
 
-class TrashTypes(models.Model):
-    id = models.IntegerField(db_column='ID', primary_key=True)  # Field name made lowercase.
+class TrashType(models.Model):
     name = models.CharField(unique=True, max_length=30)
-    description = models.TextField()
+    description = models.TextField(blank=True, null=True)
+
+    def __unicode__(self):
+        return self.name
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'trash_types'
 
 
-class UserSocialnet(models.Model):
-    user = models.ForeignKey('Users', models.DO_NOTHING, primary_key=True)
-    vk = models.ForeignKey('VkUsers', models.DO_NOTHING)
-    facebook = models.ForeignKey(FacebookUsers, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        db_table = 'user-socialnet'
-
-
-class Users(models.Model):
-    id = models.IntegerField(db_column='ID', primary_key=True)  # Field name made lowercase.
+class User(models.Model):
     login = models.CharField(unique=True, max_length=30)
     password = models.BigIntegerField(unique=True)
     reg_date = models.DateField()
     raiting = models.IntegerField()
 
+    def __unicode__(self):
+        return self.login
+
     class Meta:
-        managed = False
+        managed = True
         db_table = 'users'
 
 
-class UsersExamples(models.Model):
-    trash = models.ForeignKey(TrashExamples, models.DO_NOTHING)
-    user = models.ForeignKey(Users, models.DO_NOTHING)
+class UserTrash(models.Model):
+    trash = models.ForeignKey(Trash, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __unicode__(self):
+        return 'User-Trash connection'
 
     class Meta:
-        managed = False
-        db_table = 'users-examples'
+        managed = True
+	verbose_name_plural = 'User-Trash'
+        db_table = 'users-trash'
 
 
-class VkUsers(models.Model):
-    id = models.IntegerField(db_column='ID', primary_key=True)  # Field name made lowercase.
+class VkUser(models.Model):
     address = models.CharField(unique=True, max_length=50)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'vk_users'
+
+class FacebookUser(models.Model):
+    address = models.CharField(unique=True, max_length=50)
+
+    class Meta:
+        managed = True
+        db_table = 'facebook_users'
+
+class UserSocialnet(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    vk = models.ForeignKey(VkUser, on_delete=models.CASCADE)
+    facebook = models.ForeignKey(FacebookUser, on_delete=models.CASCADE)
+
+    class Meta:
+        managed = True
+        db_table = 'user-socialnet'
+
