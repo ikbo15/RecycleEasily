@@ -29,8 +29,9 @@ class StationAdmin(admin.ModelAdmin):
 	search_fields = ['name']
 	
 	fieldsets = [
-		(None, {'fields': ['name', 'description', 'show']}),
-		(u'Адрес', {'fields': ['street', 'house', 'building']}),
+		(None, {'fields': ('name', 'description', 'show')}),
+		(u'Время работы', {'fields': ('time_open', 'time_close')}),
+		(u'Адрес', {'fields': ('street', 'house', 'building')}),
 	]
 	inlines = [TrashStationInLine]	
 

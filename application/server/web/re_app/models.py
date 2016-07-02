@@ -48,10 +48,14 @@ class TrashStation(models.Model):
 
 class Station(models.Model):
     name = models.CharField(u'Станция', max_length=30)
+    telephone = models.CharField(u'Телефон', max_length=20, null =True)
+    time_open = models.TimeField(u'Открывается в', blank=True, null = True)
+    time_close = models.TimeField(u'Закрываеться в', blank=True, null = True)
     street = models.ForeignKey(Street, on_delete=models.CASCADE, verbose_name = 'Улица')
     house = models.SmallIntegerField(u'Дом')
     building = models.SmallIntegerField(u'Корпус', blank=True,null=True)
-    raiting = models.SmallIntegerField(u'Популярность', blank=True,null=True)
+    raiting = models.SmallIntegerField(u'Рэйтинг', blank=True, default = 0)
+    nof_use = models.IntegerField(u'Популярность', default = 0) 
     position_x = models.FloatField(u'Широта', blank=True,null=True)
     position_y = models.FloatField(u'Долгота', blank=True,null=True)
     add_date = models.DateTimeField(u'Дата добавления', auto_now_add=True)
