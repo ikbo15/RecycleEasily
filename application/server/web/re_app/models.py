@@ -3,7 +3,7 @@
 
 
 from django.db import models
-
+from datetime import datetime
 
 class City(models.Model):
     name = models.CharField(u'Город', unique=True, max_length=30)
@@ -23,7 +23,7 @@ class Street(models.Model):
     name = models.CharField(u'Улица', max_length=100)
 
     def __unicode__(self):
-        return self.name
+        return self.city.name + ', '+ self.name
 
     class Meta:
         managed = True
@@ -41,8 +41,8 @@ class TrashStation(models.Model):
    
     class Meta:
         managed = True
-        verbose_name = u'Утиль-Станция'
-        verbose_name_plural = u'утиль-Станция'
+        verbose_name = u'объект'
+        verbose_name_plural = u'объекты'
 	db_table = 'trash-stations'
 
 
@@ -54,10 +54,10 @@ class Station(models.Model):
     raiting = models.SmallIntegerField(u'Популярность', blank=True,null=True)
     position_x = models.FloatField(u'Широта', blank=True,null=True)
     position_y = models.FloatField(u'Долгота', blank=True,null=True)
-    add_date = models.DateField(u'Дата добавления')
-    update_date = models.DateField(u'Дата обновления')
+    add_date = models.DateTimeField(u'Дата добавления', auto_now_add=True)
+    update_date = models.DateTimeField(u'Дата обновления', auto_now=True)
     description = models.TextField(u'Описание', blank=True, null=True)
-    show = models.BooleanField(u'Видна на карте', default=False)
+    show = models.BooleanField(u'На карте', default=False)
 
 
     def __unicode__(self):
@@ -116,7 +116,7 @@ class TrashType(models.Model):
 class User(models.Model):
     login = models.CharField(u'Логин', unique=True, max_length=30)
     password = models.BigIntegerField(u'Пароль', unique=True)
-    reg_date = models.DateField(u'Дата регистрации')
+    reg_date = models.DateField(u'Дата регистрации', auto_now_add=True)
     raiting = models.IntegerField(u'Уровень')
 
     def __unicode__(self):
@@ -138,8 +138,8 @@ class UserTrash(models.Model):
 
     class Meta:
         managed = True
-        verbose_name = u'Пользователь-Утиль'
-        verbose_name_plural = u'пользователь-Утиль'
+        verbose_name = u'объект'
+        verbose_name_plural = 'объекты'
         db_table = 'users-trash'
 
 
