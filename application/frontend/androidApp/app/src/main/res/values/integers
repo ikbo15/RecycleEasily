@@ -1,0 +1,6 @@
+
+<resources>
+    <integer name="First_color">123456</integer>
+    <integer name="Second_color">123456</integer>
+
+</resources>

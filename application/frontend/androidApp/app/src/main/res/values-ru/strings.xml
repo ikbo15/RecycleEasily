@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RecycleEasy</string>
+    <string name="action_settings">Настройки</string>
+    <string name="navigation_drawer_close">Закрыть панельнавигации</string>
+    <string name="navigation_drawer_open">Открыть панельнавигации</string>
+    <string name="text_news">Новости</string>
+    <string name="text_search">Поиск</string>
+    <string name="text_cat">Категории</string>
+    <string name="text_main">Главная страница</string>
+    <string name="text_map">Карта</string>
+    <string name="text_help">Поддержка</string>
+    <string name="text_account">Профиль</string>
+    <string name="accoun_page">Ваш аккаунт</string>
+    <string name="help_header">Окно помощи</string>
+    <string name="help_sendbt">Отправить</string>
+    <string name="help_description">Вы можете связаться с нами для того, чтобы доложить о багах или для отзыва.</string>
+    <string-array name="recTypesArray">
+        <item>Пластик</item>
+        <item>Стекло</item>
+        <item>Батарейки</item>
+        <item>Металл</item>
+        <item>Макалатура</item>
+        <item>Все</item>
+    </string-array>
+    <string name="showMapParam">Показать</string>
+</resources>

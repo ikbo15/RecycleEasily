@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RecycleEasy</string>
+    <string name="action_settings">Settings</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="text_news">News</string>
+    <string name="text_search">Search</string>
+    <string name="text_cat">Categories</string>
+    <string name="text_main">Main page</string>
+    <string name="text_map">Map</string>
+    <string name="text_help">Help</string>
+    <string name="text_account">Profile</string>
+
+    <string name="accoun_page">Account page</string>
+    <string name="help_header">Help window</string>
+    <string name="help_sendbt">Send</string>
+    <string name="help_description">Tell us about bugs or for request.</string>
+    <string-array name="recTypesArray">
+        <item>Plastic</item>
+        <item>Glass</item>
+        <item>Battary</item>
+        <item>Metal</item>
+        <item>Paper</item>
+        <item>All</item>
+    </string-array>
+    <string name="showMapParam">Show</string>
+
+</resources>
