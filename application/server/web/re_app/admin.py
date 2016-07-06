@@ -30,7 +30,7 @@ class StationAdmin(admin.ModelAdmin):
 	
 	fieldsets = [
 		(None, {'fields': ('name', 'description', 'show')}),
-		(u'Время работы', {'fields': ('time_open', 'time_close')}),
+		(u'Время работы', {'fields': (('day_open', 'day_close'),('time_open', 'time_close'))}),
 		(u'Адрес', {'fields': ('street', 'house', 'building')}),
 	]
 	inlines = [TrashStationInLine]	

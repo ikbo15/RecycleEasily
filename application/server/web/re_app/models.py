@@ -47,8 +47,20 @@ class TrashStation(models.Model):
 
 
 class Station(models.Model):
+    DAYS_OF_WEEK = (
+        (u'Пн', u'Понедельник'),
+	(u'Вт', u'Вторник'),
+	(u'Ср', u'Среда'),
+	(u'Чт', u'Четверг'),
+	(u'Пт', u'Пятница'),
+	(u'Сб', u'Суббота'),
+	(u'Вс', u'Воскресение')
+    )
+
     name = models.CharField(u'Станция', max_length=30)
     telephone = models.CharField(u'Телефон', max_length=20, null =True)
+    day_open = models.CharField(u'Работает с', max_length=2, choices=DAYS_OF_WEEK, default=u'Пн')
+    day_close = models.CharField(u'по', max_length=2, choices=DAYS_OF_WEEK, default=u'Сб')
     time_open = models.TimeField(u'Открывается в', blank=True, null = True)
     time_close = models.TimeField(u'Закрываеться в', blank=True, null = True)
     street = models.ForeignKey(Street, on_delete=models.CASCADE, verbose_name = 'Улица')
