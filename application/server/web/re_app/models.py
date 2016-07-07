@@ -47,23 +47,9 @@ class TrashStation(models.Model):
 
 
 class Station(models.Model):
-    DAYS_OF_WEEK = (
-        (u'Пн', u'Понедельник'),
-	(u'Вт', u'Вторник'),
-	(u'Ср', u'Среда'),
-	(u'Чт', u'Четверг'),
-	(u'Пт', u'Пятница'),
-	(u'Сб', u'Суббота'),
-	(u'Вс', u'Воскресение')
-    )
-
     name = models.CharField(u'Станция', max_length=30)
-    telephone = models.CharField(u'Телефон', max_length=20, null =True)
-    day_open = models.CharField(u'Работает с', max_length=2, choices=DAYS_OF_WEEK, default=u'Пн')
-    day_close = models.CharField(u'по', max_length=2, choices=DAYS_OF_WEEK, default=u'Сб')
-    time_open = models.TimeField(u'Открывается в', blank=True, null = True)
-    time_close = models.TimeField(u'Закрываеться в', blank=True, null = True)
-    street = models.ForeignKey(Street, on_delete=models.CASCADE, verbose_name = 'Улица')
+    telephone = models.CharField(u'Телефон', max_length=20, null =True, blank=True)
+    street = models.ForeignKey(Street, on_delete=models.CASCADE, verbose_name = u'Улица')
     house = models.SmallIntegerField(u'Дом')
     building = models.SmallIntegerField(u'Корпус', blank=True,null=True)
     raiting = models.SmallIntegerField(u'Рэйтинг', blank=True, default = 0)
@@ -84,6 +70,35 @@ class Station(models.Model):
         verbose_name = u'Станция утилизации отходов'
         verbose_name_plural = u'cтанции утилизации'
         db_table = 'stations'
+
+
+class Schedule(models.Model):
+    DAYS_OF_WEEK = (
+        (u'Пн', u'Понедельник'),
+        (u'Вт', u'Вторник'),
+        (u'Ср', u'Среда'),
+        (u'Чт', u'Четверг'),
+        (u'Пт', u'Пятница'),
+        (u'Сб', u'Суббота'),
+        (u'Вс', u'Воскресение')
+    )
+
+
+    station = models.ForeignKey(Station, on_delete=models.CASCADE, verbose_name = u'Станция утилизации')
+    day_open = models.CharField(u'Работает с', max_length=2, choices=DAYS_OF_WEEK, default=u'Пн')
+    day_close = models.CharField(u'по', max_length=2, choices=DAYS_OF_WEEK, default=u'Вс')
+    time_open = models.TimeField(u'Открывается в', default='09:00')
+    time_close = models.TimeField(u'Закрываеться в', default='18:00')
+    all_day = models.BooleanField(u'Круглосуточно', default=False)
+   
+    def __unicode__(self):
+        return u'График работы ' + self.station.name
+
+    class Meta:
+        managed = True
+        verbose_name = u'Гравик работы'
+        verbose_name_plural = u'Грфики работы'
+        db_table = 'schedule'
 
 
 class TrashClass(models.Model):

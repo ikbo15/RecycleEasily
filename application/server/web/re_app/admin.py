@@ -10,8 +10,13 @@ class StreetAdmin(admin.ModelAdmin):
 
 class TrashStationInLine(admin.StackedInline):
 	model = TrashStation
-	extra = 1
+	extra = 0
 	verbose_name_plural = u'Типы принимаемых отходов'
+
+class ScheduleInLine(admin.StackedInline):
+	model = Schedule
+	extra = 0 
+	verbose_name_plural = u'График работы'
 
 class StationAdmin(admin.ModelAdmin):
 	def display(modeladmin, request, queryset):
@@ -29,11 +34,10 @@ class StationAdmin(admin.ModelAdmin):
 	search_fields = ['name']
 	
 	fieldsets = [
-		(None, {'fields': ('name', 'description', 'show')}),
-		(u'Время работы', {'fields': (('day_open', 'day_close'),('time_open', 'time_close'))}),
+		(None, {'fields': ('name', 'telephone', 'description', 'show')}),
 		(u'Адрес', {'fields': ('street', 'house', 'building')}),
 	]
-	inlines = [TrashStationInLine]	
+	inlines = [ScheduleInLine, TrashStationInLine]	
 
 
 class TrashAdmin(admin.ModelAdmin):
