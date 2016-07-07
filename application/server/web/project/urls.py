@@ -21,6 +21,8 @@ from django.contrib import admin
 
 urlpatterns = [
 	url(r'^', include('re_app.urls')),
+	url(r'^admin/', include('smuggler.urls')),
+    	url(r'^admin/', include(admin.site.urls)),
 	url(r'^admin/', admin.site.urls),
 	url(r'^admin/doc/', include('django.contrib.admindocs.urls'))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
