@@ -1,0 +1,12 @@
+{
+	"keyboard" : 
+	[
+		[
+			{
+				"text" : "ОТМЕНА"
+			}
+		]
+	],
+	"resize_keyboard" : true,
+	"Describtion" : "Клавиатура меню при поиске"
+}

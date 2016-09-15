@@ -1,0 +1,21 @@
+{
+	"keyboard" : 
+	[
+		[
+			{
+				"text" : "НАЙТИ ПРОТИВНИКА",
+				"request_location" : true
+			}
+		],
+		[
+			{
+				"text" : "МАГАЗИН"
+			},
+			{
+				"text" : "ХАРАКТЕРИСТИКИ"
+			}
+		]
+	],
+	"resize_keyboard" : true,
+	"Describtion" : "Клавиатура главного меню"
+}
