@@ -9,6 +9,8 @@
 #ifndef RecycleEasily_classUser_h
 #define RecycleEasily_classUser_h
 
+#include <iostream>
+
 using namespace std;
 
 class User{
