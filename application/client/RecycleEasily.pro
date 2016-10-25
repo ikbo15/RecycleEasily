@@ -8,7 +8,9 @@ SOURCES += main.cpp \
     control.cpp \
     reexception.cpp \
     src/control.cpp \
-    src/reexception.cpp
+    src/reexception.cpp \
+    src/point.cpp \
+    src/user.cpp
 
 RESOURCES += qml.qrc
 
@@ -22,7 +24,9 @@ HEADERS += \
     control.h \
     reexception.h \
     src/control.h \
-    src/reexception.h
+    src/reexception.h \
+    src/point.h \
+    src/user.h
 
 DISTFILES += \
     lib/README.md \

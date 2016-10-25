@@ -1,5 +1,6 @@
 #ifndef REEXCEPTION_H
 #define REEXCEPTION_H
+#include "QString"
 
 /*!
    \class REexception (RecycleEasilyException)
@@ -37,8 +38,8 @@ class REexception
 {
 public:
 
-    static const int UNDEFINED_ERR; //неизвестная ошибка
-    static const int NO_CONNECTION; //отсутствие соединения
+    static const int UNDEFINED_ERR = 000001; //неизвестная ошибка
+    static const int NO_CONNECTION = 000002; //отсутствие соединения
 
 
     // конструктор
@@ -46,7 +47,9 @@ public:
 
     // выкидывает исключение с соответсвующим кодом. e - код ошибки
     // в перспективе будет логировать выброшенные исключения
-    void throwByCode(int e);
+    void throwByCode(int e) {
+        throw e;
+    }
 
     // возвращает пользовательское описание ошибки. е - код ошибки
     QString getUserDescription(int e);
