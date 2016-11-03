@@ -13,6 +13,10 @@
 
 using namespace std;
 
+struct Coordinates{
+    
+};
+
 class Point{
 private:
     string name;
@@ -21,6 +25,8 @@ private:
     string url;
     string type;
     int weight;
+    Coordinates location;
+    string workingHours;
 public:
     Point() {
         name = "";
@@ -29,6 +35,7 @@ public:
         url = "";
         type = "";
         weight = 0;
+        workingHours = ""
     }
     void SetName(string pointname) {
         name = pointname;
@@ -48,6 +55,9 @@ public:
     void SetType(string t) {
         type = t;
     }
+    void SetWorkingHours(string hours) {
+        workingHours = hours;
+    }
     string GetName() {
         return name;
     }
@@ -65,6 +75,9 @@ public:
     }
     string GetType() {
         return type;
+    }
+    string GetWorkingHours {
+        return workingHours;
     }
     ~Point() {
         
