@@ -14,19 +14,20 @@
 using namespace std;
 
 struct Coordinates{
-    
+    int x;
+    int y;
 };
 
-class Point{
+class Point {
 private:
-    string name;
-    string adress;
-    string description;
-    string url;
-    string type;
+    string name;            //id пункта
+    string adress;          //адрес пункта
+    string description;     //описание пункта
+    string url;             //
+    string type;            //тип пункта
     int weight;
-    Coordinates location;
-    string workingHours;
+    Coordinates location;   //координаты пункта
+    string workingHours;    //часы работы пункта
 public:
     Point() {
         name = "";
