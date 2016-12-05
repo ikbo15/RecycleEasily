@@ -21,11 +21,13 @@ private:
     string email;       //адрес элктронной почты
     string vk_url;      //ссылка вконтакте
     int points;         //баллы за утилизацию
-    long int CheckInTime;      //время последнего чек-ина
+    long int checkInTime;      //время последнего чек-ина
     
-    //добавляет очуи за утилизацию
-    void AddPoints(int pnts) {
-        points += pnts;
+    //добавляет очки за утилизацию
+    void AddPoints(int type) {
+        //to do: баллы за каждый тип мусора можно распределить по-другому
+        int pointsArray[]={1,2,3,4,5,6};
+        points += pointsArray[type];
     }
     void SetEmail(string mail) {
         email = mail;
@@ -37,7 +39,7 @@ private:
         vk_url = link;
     }
     void SetCheckInTime(long int t) {
-        CheckInTime = t;
+        checkInTime = t;
     }
 public:
     User() {
@@ -46,7 +48,7 @@ public:
         email = "";
         vk_url = "";
         points = 0;
-        CheckInTime = 0;
+        checkInTime = 0;
     }
     void SetPassword(string psswrd) {
         password = psswrd;
@@ -64,12 +66,12 @@ public:
         return points;
     }
     long int GetCheckInTime() {
-        return CheckInTime;
+        return checkInTime;
     }
     bool IsPasswordTrue(string psswrd) {
         return psswrd == password;
     }
-    //создание нового пользователя
+    //создание нового пользователя, пароль и хотябы одно поле кроме пароля не должны быть пустыми
     bool CreateUser(string username, string mail, string link, string psswrd) {
         if (("" == username) && ("" == mail) && ("" == link))
             return false;
@@ -85,15 +87,19 @@ public:
         return true;
     }
     //проверка времени
-    bool TimeVerification(long int t) {
-        return (difftime(t, GetCheckInTime()) >= 600);
+    bool TimeVerification() {
+        return (difftime(time(0), GetCheckInTime()) >= 600);
+    }
+    //возвращает время, оставшееся до чек-ина в секундах
+    int GetTimeBeforeCheckIn() {
+        return 600 - difftime(time(0), GetCheckInTime());
     }
     //чек-ин
-    bool CheckIn(int x, int y, int pnts) {
-        //добавить проверку координат
-        if (TimeVerification(time(0)))
+    bool CheckIn(int userX, int userY, int pointX, int pointY, int type) {
+        //to do: добавить возможную погрешность в координатах
+        if ((TimeVerification()) && (userX == pointX) && (userY == pointY))
         {
-            AddPoints(pnts);
+            AddPoints(type);
             SetCheckInTime(time(0));
             return true;
         }
