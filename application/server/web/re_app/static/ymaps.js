@@ -1,21 +1,19 @@
+ymaps.ready(init);
+var myMap, Placemark;
+
 function init() {
     var myMap = new ymaps.Map('map', {
         center: [55.74, 37.58],
         zoom: 13,
         controls: ['geolocationControl']
     });
-    
-    var searchControl = new ymaps.control.SearchControl({
-        options: {
-            provider: 'yandex#search'
-        }
-    });
-    
-    myMap.controls.add(searchControl);
-    
-    searchControl.search('Прием вторсырья');
-}
+	
+	Placemark = new ymaps.Placemark([55.752132, 37.670847], { 
+            hintContent: 'Сфера экологии', 
+            balloonContent: 'Сфера экологии'
+        });
 
-ymaps.ready(init);
+    myMap.geoObjects.add(Placemark);
+}
 
 
