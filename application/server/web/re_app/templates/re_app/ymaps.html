@@ -53,7 +53,7 @@
 				<nav class="left">
 					<a href="#menu"><span>Menu</span></a>
 				</nav>
-				<a href="#" class="logo">Recycle Easily</a>
+				<a href="{% url 'index' %}" class="logo">Recycle Easily</a>
 				<nav class="right">
 					<a href="admin"class="button alt">Admin</a>
 				</nav>
@@ -63,7 +63,7 @@
 			<nav id="menu">
 				Выбор по типу утиля
 				<ul class="links">
-					<li><a href="#">Все</a></li>
+					<li><a href="{% url 'index' %}">Все</a></li>
 					<li><a href="{% url 'danger' %}">Опасные</a></li>
 					<li><a href="{% url 'metal' %}">Металл</a></li>
 					<li><a href="{% url 'glass' %}">Стекло</a></li>
